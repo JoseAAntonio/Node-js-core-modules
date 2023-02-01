@@ -26,6 +26,21 @@ const server = http.createServer((req, res) => {
 	}
 });
 
+fs.unlink("arquivo.txt", (err) => {
+	err ? console.log(err) : console.log("Arquivo removido");
+});
+
+const arqAntigo = "arquivo2.txt";
+const arqNovo = "arquivoRenomeado.txt";
+
+fs.rename(arqAntigo, arqNovo, (err) => {
+	if (err) {
+		console.log(err);
+		return;
+	}
+	console.log(`o arquivo ${arqAntigo} foi renomeado para ${arqNovo}`);
+});
+
 server.listen(port, () => {
 	console.log(`servidor rodando na porta ${port}`);
 });
